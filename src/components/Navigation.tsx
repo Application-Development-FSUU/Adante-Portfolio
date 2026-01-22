@@ -13,6 +13,10 @@ export const Navigation = () => {
     { name: 'Contact', href: '#contact' }
   ];
 
+  const handleNavClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <motion.nav 
       className="navbar"
@@ -40,21 +44,18 @@ export const Navigation = () => {
           <span></span>
         </button>
 
-        <motion.ul 
+        <ul 
           className={`nav-menu ${isOpen ? 'active' : ''}`}
-          animate={isOpen ? { x: 0 } : { x: '100%' }}
-          transition={{ duration: 0.3 }}
         >
           {navLinks.map((link, index) => (
-            <motion.li 
+            <li 
               key={index}
-              whileHover={{ scale: 1.05 }}
-              onClick={() => setIsOpen(false)}
+              onClick={handleNavClick}
             >
               <a href={link.href}>{link.name}</a>
-            </motion.li>
+            </li>
           ))}
-        </motion.ul>
+        </ul>
       </div>
     </motion.nav>
   );

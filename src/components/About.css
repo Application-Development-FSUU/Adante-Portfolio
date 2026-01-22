@@ -23,6 +23,17 @@
 .about-content .glass-card {
   display: flex;
   flex-direction: column;
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  background: rgba(10, 15, 28, 0.4);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.about-content .glass-card:hover {
+  border-color: rgba(0, 229, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .about-content h3 {
@@ -45,13 +56,17 @@
   margin: 0 auto;
   text-align: center;
   padding: 2rem;
-  background: rgba(0, 229, 255, 0.05);
-  border: 2px solid rgba(0, 229, 255, 0.3);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 30px rgba(0, 229, 255, 0.2),
-              inset 0 0 20px rgba(0, 229, 255, 0.1);
+  background: rgba(10, 15, 28, 0.4);
+  border: 1px solid rgba(0, 229, 255, 0.15);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
+
+.about-highlight:hover {
+  border-color: rgba(0, 229, 255, 0.25);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}E0E0E0
 
 .about-highlight p {
   font-size: 1.15rem;
