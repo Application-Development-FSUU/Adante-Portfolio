@@ -7,6 +7,8 @@
   text-align: center;
   margin-bottom: 3rem;
   font-size: 2.5rem;
+  position: relative;
+  padding-bottom: 0;
 }
 
 .about-content {
@@ -61,17 +63,28 @@
 @media (max-width: 768px) {
   .about h2 {
     font-size: 2rem;
+    text-align: center;
   }
 
   .about-content {
     grid-template-columns: 1fr;
   }
 
+  .about-content h3 {
+    text-align: center;
+  }
+
+  .about-content p {
+    text-align: center;
+  }
+
   .about-highlight {
     padding: 1.5rem;
+    text-align: center;
   }
 
   .about-highlight p {
     font-size: 1rem;
+    text-align: center;
   }
 }

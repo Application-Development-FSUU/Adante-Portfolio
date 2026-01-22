@@ -50,6 +50,13 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  position: static;
+  width: auto;
+  height: auto;
+  background: none;
+  flex-direction: row;
+  transform: none !important;
+  border: none;
 }
 
 .nav-menu li {
@@ -164,8 +171,6 @@
     padding: 1rem 0;
     border-bottom: 1px solid rgba(0, 229, 255, 0.1);
   }
-  padding: 0 1rem;
-  }
 
   .nav-logo a {
     font-size: 1.1rem;
@@ -180,17 +185,7 @@
     top: 60px;
     height: calc(100vh - 60px);
     width: 75%;
-    padding: 1.5rem60px;
-  }
-
-  .nav-logo a {
-    font-size: 1.1rem;
-  }
-
-  .nav-menu {
-    top: 60px;
-    height: calc(100vh - 60px);
-    padding: 1rem;
+    padding: 1.5rem 1rem;
   }
 
   .nav-menu li {

@@ -159,16 +159,18 @@
 @media (max-width: 768px) {
   .hero {
     min-height: auto;
-    padding: 4rem 1rem;
+    padding: 5rem 1rem 4rem 1rem;
   }
 
   .hero-wrapper {
     gap: 2rem;
+    padding-top: 1rem;
   }
 
   .hero-profile {
     width: 180px;
     height: 180px;
+    margin-top: 0.5rem;
   }
 
   .hero-title {
