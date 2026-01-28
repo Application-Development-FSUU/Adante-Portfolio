@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import './Contact.css';
 
 export const Contact = () => {
@@ -11,6 +12,12 @@ export const Contact = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
+  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -20,15 +27,40 @@ export const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
+
+    if (!serviceId || !templateId || !publicKey) {
+      setStatusMessage('Email service is not configured yet.');
+      return;
+    }
+
+    setIsSending(true);
+    setStatusMessage('');
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          name: formData.name,
+          email: formData.email,
+          title: formData.subject,
+          message: formData.message
+        },
+        publicKey
+      );
+
+      setSubmitted(true);
+      setStatusMessage('Message sent! Check your Gmail inbox.');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      setSubmitted(false);
-    }, 3000);
+      setTimeout(() => setSubmitted(false), 3000);
+    } catch (error) {
+      console.error('Email send failed:', error);
+      setStatusMessage('Failed to send message. Please try again.');
+    } finally {
+      setIsSending(false);
+    }
   };
 
   const socialLinks = [
@@ -114,10 +146,13 @@ export const Contact = () => {
               className="btn btn-primary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              disabled={submitted}
+              disabled={submitted || isSending}
             >
-              {submitted ? '✓ Message Sent!' : 'Send Message'}
+              {isSending ? 'Sending...' : submitted ? '✓ Message Sent!' : 'Send Message'}
             </motion.button>
+            {statusMessage && (
+              <p className="contact-status">{statusMessage}</p>
+            )}
           </form>
         </motion.div>
 

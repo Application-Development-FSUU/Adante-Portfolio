@@ -3,7 +3,7 @@ import './Hero.css';
 
 export const Hero = () => {
   return (
-    <section className="hero">
+    <section id="home" className="hero">
       <motion.div 
         className="hero-wrapper"
         initial={{ opacity: 0, y: 30 }}
